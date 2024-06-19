@@ -1,0 +1,35 @@
+<body>
+<div class="login_form">
+  <!-- Registration form container -->
+  <form (ngSubmit)="register()">
+    <h3>Sign up</h3>
+
+    <!-- Username input box -->
+    <div class="input_box">
+      <label for="username">Username</label>
+      <input type="text" id="username" [(ngModel)]="registerDto.username" name="username" placeholder="Enter username" required />
+    </div>
+
+    <!-- Password input box -->
+    <div class="input_box">
+      <div class="password_title">
+        <label for="password">Password</label>
+      </div>
+      <input type="password" id="password" [(ngModel)]="registerDto.password" name="password" placeholder="Enter your password" required />
+    </div>
+
+    <!-- Confirm Password input box -->
+    <div class="input_box">
+      <div class="password_title">
+        <label for="confirmPassword">Confirm Password</label>
+      </div>
+      <input type="password" id="confirmPassword" [(ngModel)]="registerDto.confirmPassword" name="confirmPassword" placeholder="Confirm your password" required />
+    </div>
+
+    <!-- Sign Up button -->
+    <button type="submit">Sign Up</button>
+
+    <p class="sign_up">Already have an account? <a (click)="login()">Sign In</a></p>
+  </form>
+</div>
+</body>

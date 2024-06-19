@@ -1,0 +1,30 @@
+<body>
+<div class="login_form">
+  <!-- Login form container -->
+  <form (ngSubmit)="login()">
+    <h3>Log in with</h3>
+
+    <div class="login_option"></div>
+
+    <!-- Username input box -->
+    <div class="input_box">
+      <label for="username">Username</label>
+      <input type="text" id="username" [(ngModel)]="username" name="username" placeholder="Enter username" required />
+    </div>
+
+    <!-- Password input box -->
+    <div class="input_box">
+      <div class="password_title">
+        <label for="password">Password</label>
+      </div>
+      <input [type]="type" id="password" [(ngModel)]="password" name="password" placeholder="Enter your password" required />
+      <i class="fa" [ngClass]="eyeIcon" (click)="hideShowPass()"></i>
+    </div>
+
+    <!-- Login button -->
+    <button type="submit">Log In</button>
+
+    <p class="sign_up">Don't have an account? <a (click)="register()">Sign up</a></p>
+  </form>
+</div>
+</body>
