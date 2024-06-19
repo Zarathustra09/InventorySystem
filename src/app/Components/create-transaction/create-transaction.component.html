@@ -1,0 +1,38 @@
+<div class="container">
+  <h2>Create Transaction</h2>
+  <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="product_Id">Product ID:</label>
+      <input id="product_Id" formControlName="product_Id" class="form-control" type="number" />
+      <div *ngIf="transactionForm.controls['product_Id'].invalid && transactionForm.controls['product_Id'].touched">
+        Product ID is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="transaction_Type">Transaction Type:</label>
+      <input id="transaction_Type" formControlName="transaction_Type" class="form-control" type="text" />
+      <div *ngIf="transactionForm.controls['transaction_Type'].invalid && transactionForm.controls['transaction_Type'].touched">
+        Transaction Type is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="quantity">Quantity:</label>
+      <input id="quantity" formControlName="quantity" class="form-control" type="number" />
+      <div *ngIf="transactionForm.controls['quantity'].invalid && transactionForm.controls['quantity'].touched">
+        Quantity is required and must be a non-negative number.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="transaction_Date">Transaction Date:</label>
+      <input id="transaction_Date" formControlName="transaction_Date" class="form-control" type="date" />
+      <div *ngIf="transactionForm.controls['transaction_Date'].invalid && transactionForm.controls['transaction_Date'].touched">
+        Transaction Date is required.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="transactionForm.invalid">Create Transaction</button>
+  </form>
+</div>

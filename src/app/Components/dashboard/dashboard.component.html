@@ -1,7 +1,7 @@
 <body id="page-top">
 <div id="wrapper">
   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/dashboard">
       <div class="sidebar-brand-icon rotate-n-15">
         <i class="fab fa-angular"></i>
       </div>
@@ -9,7 +9,7 @@
     </a>
     <hr class="sidebar-divider my-0">
     <li class="nav-item active">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" routerLink="/dahsbooard">
         <i class="fas fa-fw fa-chart-line"></i>
         <span>Dashboard</span></a>
     </li>
@@ -18,14 +18,14 @@
       Items
     </div>
     <li class="nav-item">
-      <a class="nav-link" href="charts.html">
+      <a class="nav-link" routerLink="/dashboard">
         <i class="fas fa-fw fa-warehouse"></i>
         <span>Inventory</span></a>
     </li>
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-      <a class="nav-link" href="tables.html">
+      <a class="nav-link" routerLink="/transactions">
         <i class="fas fa-fw fa-exchange-alt"></i>
         <span>Transaction</span></a>
     </li>
@@ -40,7 +40,7 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="charts.html">
+      <a class="nav-link" routerLink="/login">
         <i class="fas fa-fw fa-sign-out-alt"></i>
         <span>Logout</span></a>
     </li>
@@ -99,7 +99,7 @@
 
       <!-- Begin Page Content -->
       <div class="container-fluid">
-  <app-products></app-products>
+        <app-products></app-products>
 
       </div>
       <!-- /.container-fluid -->
@@ -117,34 +117,6 @@
     </footer>
     <!-- End of Footer -->
 
-  </div>
-  <!-- End of Content Wrapper -->
-
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-  <i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <a class="btn btn-primary" href="login.html">Logout</a>
-      </div>
-    </div>
   </div>
 </div>
 </body>

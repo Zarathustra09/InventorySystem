@@ -1,7 +1,7 @@
 export interface Transaction {
   transaction_Id?: number;
   product_Id: number;
-  transactionType: string;
+  transaction_Type: string; // Use the same casing as in the backend
   quantity: number;
-  transactionDate: Date;
+  transaction_Date: Date;   // Use the same casing as in the backend
 }

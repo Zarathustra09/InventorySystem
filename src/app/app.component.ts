@@ -4,6 +4,7 @@ import {AuthService} from "./Services/auth.service";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {ProductService} from "./Services/product.service";
+import {TransactionService} from "./Services/transaction.service";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ import {ProductService} from "./Services/product.service";
   imports: [RouterOutlet,HttpClientModule,FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  providers: [AuthService,ProductService]
+  providers: [AuthService,ProductService,TransactionService]
 })
 export class AppComponent {
   title = 'InventorySystem';

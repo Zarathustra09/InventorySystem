@@ -3,13 +3,15 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import { ProductService } from '../../Services/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from '../../Models/product.model';
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-update-product',
   templateUrl: './update-product.component.html',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgIf
   ],
   styleUrls: ['./update-product.component.css']
 })

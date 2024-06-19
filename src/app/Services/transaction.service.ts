@@ -8,7 +8,7 @@ import {Transaction} from "../Models/transaction.model";
 })
 export class TransactionService {
 
-  private apiUrl = 'https://localhost:7119/api/Transactions'; // Replace with your actual API URL
+  private apiUrl = 'https://localhost:7119/api/Transaction'; // Replace with your actual API URL
 
   constructor(private http: HttpClient) { }
 
