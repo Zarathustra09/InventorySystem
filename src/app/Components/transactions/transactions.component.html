@@ -34,7 +34,7 @@
     <hr class="sidebar-divider d-none d-md-block">
 
     <li class="nav-item">
-      <a class="nav-link" href="charts.html">
+      <a class="nav-link" routerLink="/users">
         <i class="fas fa-fw fa-user-cog"></i>
         <span>User Maintenance</span></a>
     </li>
@@ -115,7 +115,7 @@
                 <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Product ID</th>
+                  <th>Product Name</th>
                   <th>Transaction Type</th>
                   <th>Quantity</th>
                   <th>Transaction Date</th>
@@ -125,15 +125,13 @@
                 <tbody>
                 <tr *ngFor="let transaction of transactions">
                   <td>{{ transaction.transaction_Id }}</td>
-                  <td>{{ transaction.product_Id }}</td>
+                  <td>{{ transaction.product_Name }}</td>
                   <td>{{ transaction.transaction_Type }}</td>
                   <td>{{ transaction.quantity }}</td>
-                  <td>{{ transaction.transaction_Date | date:'short' }}</td>
+                  <td>{{ formatTransactionDate(transaction.transaction_Date) }}</td>
                   <td>
-                    <button class="btn btn-sm btn-primary">Edit</button>
-                    <button class="btn btn-sm btn-danger">Delete</button>
+                    <button class="btn btn-sm btn-danger" (click)="transaction.transaction_Id !== undefined ? onDeleteTransaction(transaction.transaction_Id) : null">Delete</button>
                   </td>
-
                 </tr>
                 </tbody>
               </table>

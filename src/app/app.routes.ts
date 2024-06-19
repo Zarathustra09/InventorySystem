@@ -8,6 +8,8 @@ import {CreateProductComponent} from "./Components/create-product/create-product
 import {UpdateProductComponent} from "./Components/update-product/update-product.component";
 import {CreateTransactionComponent} from "./Components/create-transaction/create-transaction.component";
 import {UpdateTransactionComponent} from "./Components/update-transaction/update-transaction.component";
+import {UsersComponent} from "./Components/users/users.component";
+import {UpdateUserComponent} from "./Components/update-user/update-user.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -20,5 +22,8 @@ export const routes: Routes = [
   {path: 'update-product/:id', component: UpdateProductComponent},
   {path: 'create-transaction', component: CreateTransactionComponent},
   {path: 'update-transaction/:id', component: UpdateTransactionComponent},
+  {path: 'users', component: UsersComponent},
+  {path: 'update-user/:id', component: UpdateUserComponent},
+
 
 ];

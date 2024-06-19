@@ -3,7 +3,9 @@
   <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="product_Id">Product ID:</label>
-      <input id="product_Id" formControlName="product_Id" class="form-control" type="number" />
+      <select id="product_Id" formControlName="product_Id" class="form-control">
+        <option *ngFor="let product of products" [value]="product.product_Id">{{ product.product_Name }}</option>
+      </select>
       <div *ngIf="transactionForm.controls['product_Id'].invalid && transactionForm.controls['product_Id'].touched">
         Product ID is required.
       </div>
@@ -11,7 +13,10 @@
 
     <div class="form-group">
       <label for="transaction_Type">Transaction Type:</label>
-      <input id="transaction_Type" formControlName="transaction_Type" class="form-control" type="text" />
+      <select id="transaction_Type" formControlName="transaction_Type" class="form-control">
+        <option value="IN">IN</option>
+        <option value="OUT">OUT</option>
+      </select>
       <div *ngIf="transactionForm.controls['transaction_Type'].invalid && transactionForm.controls['transaction_Type'].touched">
         Transaction Type is required.
       </div>

@@ -99,7 +99,41 @@
 
       <!-- Begin Page Content -->
       <div class="container-fluid">
-        <app-products></app-products>
+        <table class="table table-striped">
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Users</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let user of users">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>
+                      <span *ngIf="user.role === 0">User</span>
+                      <span *ngIf="user.role === 1">Admin</span>
+                    </td>
+                    <td>
+                      <button class="btn btn-sm btn-primary me-1" (click)="user.id !== undefined && editUser(user.id)">Edit</button>
+                      <button class="btn btn-sm btn-danger" (click)="user.id !== undefined && deleteUser(user.id)">Delete</button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </table>
 
       </div>
       <!-- /.container-fluid -->
@@ -120,3 +154,10 @@
   </div>
 </div>
 </body>
+
+
+
+
+
+
+
