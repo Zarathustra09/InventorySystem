@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Transaction } from '../../Models/transaction.model';
 import { TransactionService } from '../../Services/transaction.service';
 import { ProductService } from '../../Services/product.service';
 import {DatePipe, NgForOf} from '@angular/common';
 import {Router, RouterLink} from '@angular/router';
+import  $ from 'jquery';
+import 'datatables.net';
 
 @Component({
   selector: 'app-transactions',
@@ -11,14 +13,15 @@ import {Router, RouterLink} from '@angular/router';
   standalone: true,
   styleUrls: ['./transactions.component.css'],
   imports: [
-    NgForOf,
-    RouterLink
+    RouterLink,
+    NgForOf
   ],
   providers: [DatePipe]
 })
-export class TransactionsComponent implements OnInit {
+export class TransactionsComponent implements OnInit, AfterViewInit {
 
   transactions: Transaction[] = [];
+  table: any;
 
   constructor(
     private transactionService: TransactionService,
@@ -29,6 +32,11 @@ export class TransactionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTransactions();
+    (window as any).deleteTransaction = this.deleteTransaction.bind(this);
+  }
+
+  ngAfterViewInit(): void {
+    this.initializeDataTable();
   }
 
   loadTransactions(): void {
@@ -44,13 +52,22 @@ export class TransactionsComponent implements OnInit {
   }
 
   populateProductNames(): void {
+    let remaining = this.transactions.length;
     this.transactions.forEach(transaction => {
       this.productService.getProductById(transaction.product_Id).subscribe(
         product => {
           transaction.product_Name = product.product_Name;
+          remaining--;
+          if (remaining === 0) {
+            this.reinitializeDataTable();
+          }
         },
         error => {
           console.error(`Error fetching product for transaction ${transaction.transaction_Id}:`, error);
+          remaining--;
+          if (remaining === 0) {
+            this.reinitializeDataTable();
+          }
         }
       );
     });
@@ -60,13 +77,38 @@ export class TransactionsComponent implements OnInit {
     return this.datePipe.transform(date, 'short') || '';
   }
 
-  onDeleteTransaction(transactionId: number): void {
+  initializeDataTable(): void {
+    this.table = $('#transactionsTable').DataTable({
+      paging: true,
+      searching: true,
+      ordering: true
+    });
+  }
+
+  reinitializeDataTable(): void {
+    if (this.table) {
+      this.table.clear();
+      this.transactions.forEach(transaction => {
+        const transactionDate = transaction.transaction_Date ? new Date(transaction.transaction_Date).toLocaleString() : '';
+        this.table.row.add([
+          transaction.transaction_Id,
+          transaction.product_Name,
+          transaction.transaction_Type,
+          transaction.quantity,
+          transactionDate,
+          `<button class="btn btn-sm btn-danger" onclick="deleteTransaction(${transaction.transaction_Id})">Delete</button>`
+        ]).draw();
+      });
+    }
+  }
+
+  deleteTransaction(transactionId: number): void {
     if (confirm('Are you sure you want to delete this transaction?')) {
       this.transactionService.deleteTransaction(transactionId).subscribe(
         () => {
           console.log(`Transaction with ID ${transactionId} deleted successfully.`);
-          // Reload transactions after deletion
-          this.loadTransactions();
+          this.transactions = this.transactions.filter(transaction => transaction.transaction_Id !== transactionId);
+          this.reinitializeDataTable(); // Update DataTable after deletion
         },
         error => {
           console.error(`Error deleting transaction with ID ${transactionId}:`, error);
